@@ -1,18 +1,18 @@
-import { useRef, useState } from "react";
+import { useRef} from "react";
 import Styles from "./AddMovie.module.css";
-const AddMovie = () => {
+const AddMovie = ({movieHandler}) => {
     const titleRef=useRef()
     const openingRef=useRef()
     const releaseRef=useRef()
   
-  const formHAndler = (e) => {
+  const formHandler = (e) => {
     e.preventDefault();
     const movie={
         title:titleRef.current.value,
         openingText:openingRef.current.value,
-        releaseText:releaseRef.current.value
+        releaseDate:releaseRef.current.value
     }
-    console.log(movie);
+    movieHandler(movie)
   };
   return (
     <form className={Styles.form}>
@@ -22,7 +22,7 @@ const AddMovie = () => {
       <input type="text" name="openingtext" ref={openingRef} />
       <label>Release Date</label>
       <input type="text" name="releasedate" ref={releaseRef} />
-      <button onClick={formHAndler}>Add Movie</button>
+      <button onClick={formHandler}>Add Movie</button>
     </form>
   );
 };
